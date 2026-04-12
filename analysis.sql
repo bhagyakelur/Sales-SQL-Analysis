@@ -23,17 +23,17 @@ CASE
 END;
 
 /*Fix quantity*/
---ALTER TABLE orders ADD QuantityOfOrders REAL;
+ALTER TABLE orders ADD QuantityOfOrders REAL;
 UPDATE orders 
 SET QuantityOfOrders = CAST(QuantityOrdered as INT);
 
 /*Fix Price*/
---ALTER TABLE orders ADD COLUMN Price REAL;
+ALTER TABLE orders ADD COLUMN Price REAL;
 UPDATE orders
 SET Price = CAST(PriceEach AS FLOAT);
 
 /*Extract city*/
---ALTER table orders add city text;
+ALTER table orders add city text;
 UPDATE orders SET city = TRIM(
     SUBSTRING(
         PurchaseAddress, 
@@ -45,7 +45,7 @@ UPDATE orders SET city = TRIM(
 );
 
 /*Create sales column*/
---ALTER TABLE orders add sales REAL;
+ALTER TABLE orders add sales REAL;
 UPDATE orders 
 SET sales = Price * QuantityOfOrders;
 
